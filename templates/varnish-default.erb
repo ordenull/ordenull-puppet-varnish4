@@ -1,0 +1,28 @@
+#############################################################################
+##h#a#n#d#s#o#f#f# This file is being maintained by Puppet #h#a#n#d#s#o#f#f##
+#############################################################################
+START=<%= @bool_start_service %>
+NFILES=<%= @nfiles %>
+MEMLOCK=<%= @memlock %>
+INSTANCE=<%= @instance %>
+
+VARNISH_VCL_CONF=<%= @vcl_conf %>
+VARNISH_LISTEN_ADDRESS=<%= @listen_address %>
+VARNISH_LISTEN_PORT=<%= @port %>
+VARNISH_ADMIN_LISTEN_ADDRESS=<%= @admin_listen_address %>
+VARNISH_ADMIN_LISTEN_PORT=<%= @admin_listen_port %>
+VARNISH_MIN_THREADS=<%= @min_threads %>
+VARNISH_MAX_THREADS=<%= @max_threads %>
+VARNISH_THREAD_TIMEOUT=<%= @thread_timeout %>
+VARNISH_SECRET_FILE=<%= @secret_file %>
+VARNISH_STORAGE="<%= @storage %>"
+VARNISH_TTL=<%= @ttl %>
+DAEMON_OPTS="-a ${VARNISH_LISTEN_ADDRESS}:${VARNISH_LISTEN_PORT} \
+             -f ${VARNISH_VCL_CONF} \
+             -T ${VARNISH_ADMIN_LISTEN_ADDRESS}:${VARNISH_ADMIN_LISTEN_PORT} \
+             -t ${VARNISH_TTL} \
+             -p thread_pool_min=${VARNISH_MIN_THREADS} \
+             -p thread_pool_max=${VARNISH_MAX_THREADS} \
+             -p thread_pool_timeout=${VARNISH_THREAD_TIMEOUT} \
+             -S ${VARNISH_SECRET_FILE} \
+             -s ${VARNISH_STORAGE}"
