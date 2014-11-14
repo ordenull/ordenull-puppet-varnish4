@@ -146,7 +146,7 @@ class varnish4 (
 
   exec { 'add-key':
     command => '/usr/bin/curl https://repo.varnish-cache.org/ubuntu/GPG-key.txt | /usr/bin/apt-key add -',
-    unless  => '/usr/bin/apt-key export C4DEFFEB',
+    unless  => '/usr/bin/test `/usr/bin/apt-key export C4DEFFEB | /usr/bin/wc -l` -gt 0',
   }
 
   exec { "apt-update":
